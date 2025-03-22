@@ -1,0 +1,48 @@
+set window on
+set display mode 1024,768,32
+sync on
+sync rate 60
+hide mouse
+autocam off
+
+`This command is now redundant as ambience is controlled per object
+set ambient light 10
+
+position camera 0,0,-10
+
+make object plain 10,20,20
+color object 10,0
+position object 10,0,0,10
+
+`Make Sphere
+make object sphere 1,4
+load image "ship2_0.jpg",1
+texture object 1,1
+scale object texture 1,2,2
+position object 1,0,0,0
+
+set object ambient 1,rgb(150,1501,50)
+set object diffuse 1,rgb(255,255,255)
+set object emissive 1,rgb(0,0,0)
+set object specular 1,rgb(128,128,128),75
+
+`roll object right 1,30
+
+make light 1
+set spot light 1,5,75
+color light 1,rgb(255,0,0)
+position light 1,-5,5,2.5
+point light 1,0,0,5
+
+make light 2
+color light 2,rgb(0,0,255)
+set spot light 2,5,75
+position light 2,5,-5,2.5
+point light 2,0,0,5
+
+do
+   set cursor 0,0
+   print screen fps()
+   turn object left 1,0.5
+   sync
+loop
